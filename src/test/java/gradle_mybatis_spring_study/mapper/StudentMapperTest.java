@@ -1,5 +1,7 @@
 package gradle_mybatis_spring_study.mapper;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.ibatis.logging.Log;
@@ -15,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import gradle_mybatis_spring_study.config.ContextRoot;
+import gradle_mybatis_spring_study.dto.PhoneNumber;
 import gradle_mybatis_spring_study.dto.Student;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -58,6 +61,21 @@ public class StudentMapperTest {
 		List<Student> list = mapper.selectStudentByAll();
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);
+	}
+
+	@Test
+	public void test04InsertStudent() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2, 28);
+		
+		Student student = new Student();
+		student.setStudId(3);
+		student.setName("홍길동3");
+		student.setEmail("lee@test.co.kr");
+		student.setPhone(new PhoneNumber("010-1234-1234"));
+		student.setDob(newDate.getTime());
+		int res = mapper.insertStudent(student);
+		Assert.assertEquals(1, res);
 	}
 
 }

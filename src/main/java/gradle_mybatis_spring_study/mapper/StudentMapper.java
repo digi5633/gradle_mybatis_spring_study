@@ -14,4 +14,6 @@ public interface StudentMapper {
 
 	List<Student> selectStudentByAll();
 
+	int insertStudent(Student student);
+
 }

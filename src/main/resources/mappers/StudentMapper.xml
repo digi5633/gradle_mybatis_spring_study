@@ -42,4 +42,9 @@
 		<include refid="selectSQL"/>
 	</select>
 	
+	<insert id="insertStudent" parameterType="Student">
+		INSERT INTO STUDENTS(STUD_ID, NAME, EMAIL, PHONE, DOB)
+		VALUES (#{studId}, #{name}, #{email}, #{phone}, #{dob})
+	</insert>
+	
 </mapper>
