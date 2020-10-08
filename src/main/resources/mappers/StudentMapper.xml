@@ -42,9 +42,24 @@
 		<include refid="selectSQL"/>
 	</select>
 	
+	<!-- 추가 -->
 	<insert id="insertStudent" parameterType="Student">
 		INSERT INTO STUDENTS(STUD_ID, NAME, EMAIL, PHONE, DOB)
 		VALUES (#{studId}, #{name}, #{email}, #{phone}, #{dob})
 	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="deleteStudent" parameterType="Student">
+		DELETE
+		  FROM STUDENTS
+		 WHERE STUD_ID = #{studId}		
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="updateStudent" parameterType="Student">
+		UPDATE STUDENTS
+		   SET NAME = #{name}, EMAIL = #{email}, PHONE = #{phone}, DOB = #{dob}
+		 WHERE STUD_ID = #{studId}
+	</update>
 	
 </mapper>
