@@ -44,6 +44,8 @@ CREATE TABLE students (
 
 ALTER TABLE students ADD CONSTRAINT PK_STUDENT_ID PRIMARY KEY (stud_id);
 
+ALTER TABLE students ADD GENDER NUMBER(1,0);
+
 /* 교수 */
 CREATE TABLE tutors (
     tutor_id NUMBER NOT NULL, /* 교수번호 */

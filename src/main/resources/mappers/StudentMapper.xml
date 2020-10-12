@@ -91,4 +91,10 @@
 		 WHERE STUD_ID = #{studId}
 	</update>
 	
+	<!-- enum 타입 다루기 -->
+	<insert id="insertEnumStudent" parameterType="Student">
+		INSERT INTO STUDENTS(STUD_ID, NAME, EMAIL, PHONE, DOB, GENDER)
+		VALUES (#{studId}, #{name}, #{email}, #{phone}, #{dob}, #{gender})
+	</insert>
+	
 </mapper>

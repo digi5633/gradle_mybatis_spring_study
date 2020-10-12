@@ -20,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import gradle_mybatis_spring_study.config.ContextRoot;
+import gradle_mybatis_spring_study.dto.Gender;
 import gradle_mybatis_spring_study.dto.PhoneNumber;
 import gradle_mybatis_spring_study.dto.Student;
 
@@ -137,6 +138,31 @@ public class StudentMapperTest {
 		Student seletedStd = mapper.selectStudentByNoAssociation(student);
 		Assert.assertNotNull(seletedStd);
 		log.debug(seletedStd.toString());
+	}
+
+	@Test
+	public void test10InsertEnumStudent() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2, 28);
+		Student student = new Student();
+		student.setStudId(3);
+		student.setName("test");
+		student.setEmail("test@test.co.kr");
+		student.setDob(newDate.getTime());
+		student.setPhone(new PhoneNumber("010-1234-1234"));
+		student.setGender(Gender.FEMALE);
+		int res = mapper.insertEnumStudent(student);
+		Assert.assertEquals(1, res);
+
+		student.setStudId(4);
+		student.setName("test4");
+		student.setEmail("test4@test.co.kr");
+		student.setDob(newDate.getTime());
+		student.setPhone(new PhoneNumber("010-1234-1234"));
+		student.setGender(Gender.MALE);
+		int res1 = mapper.insertEnumStudent(student);
+		Assert.assertEquals(1, res1);
 	}
 
 }
