@@ -1,6 +1,7 @@
 package gradle_mybatis_spring_study.dto;
 
 public class PhoneNumber {
+	
 	private String countryCode;
 	private String stateCode;
 	private String number;
