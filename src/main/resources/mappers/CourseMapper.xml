@@ -9,5 +9,54 @@
 		<result property="startDate" column="start_date"/>
 		<result property="endDate" column="end_date"/>	
 	</resultMap>
+	
+	<!-- 동적 SQL - if 조건 -->
+	<sql id="selectSql">
+		SELECT COURSE_ID, NAME, DESCRIPTION, START_DATE, END_DATE, TUTOR_ID FROM COURSES
+	</sql>
+	
+	<sql id="whereSqlWithCDATA">
+		<where>
+			<if test="tutorId != null">
+				<![CDATA[ and tutor_id = #{tutorId} ]]>
+			</if>
+			<if test="courseName != null">
+				<![CDATA[ and name like #{courseName} ]]>
+			</if>
+			<if test="startDate != null">
+				<![CDATA[ and start_date >= #{startDate} ]]>
+			</if>
+			<if test="endDate != null">
+				<![CDATA[ and end_date <= #{endDate} ]]>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectCoursesByCondition" parameterType="map" resultMap="CourseResult">
+		<include refid="selectSql"/>
+		<include refid="whereSqlWithCDATA"/>
+	</select>
+	
+	<!-- 동적 SQL - choose 조건 -->
+	<select id="selectCaseCourses" parameterType="map" resultMap="CourseResult">
+		<include refid="selectSql"/>
+		<choose>
+			<when test="searchBy == 'Tutor'">
+				WHERE TUTOR_ID = #{tutorId}
+			</when>
+			<when test="searchBy == 'CourseName'">
+				WHERE NAME LIKE #{courseName}
+			</when>
+			<otherwise>
+				WHERE END_DATE = now()
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 동적 SQL - where 조건 -->
+	<select id="selectWhereCourses" parameterType="map" resultMap="CourseResult">
+		<include refid="selectSql"/>
+		<include refid="whereSqlWithCDATA"/>
+	</select>
 
 </mapper>
