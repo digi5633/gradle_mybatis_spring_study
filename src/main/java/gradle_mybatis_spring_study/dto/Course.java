@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Course {
 
-	private int courseId;
+	private Integer courseId;
 	private String name;
 	private String description;
 	private Date startDate;
@@ -15,7 +15,7 @@ public class Course {
 		super();
 	}
 
-	public Course(int courseId, String name, String description, Date starDate, Date endDate, int tutorId) {
+	public Course(Integer courseId, String name, String description, Date starDate, Date endDate, int tutorId) {
 		this.courseId = courseId;
 		this.name = name;
 		this.description = description;
@@ -24,7 +24,7 @@ public class Course {
 		this.tutorId = tutorId;
 	}
 
-	public Course(int courseId) {
+	public Course(Integer courseId) {
 		this.courseId = courseId;
 	}
 
@@ -32,7 +32,7 @@ public class Course {
 		return courseId;
 	}
 
-	public void setCourseId(int courseId) {
+	public void setCourseId(Integer courseId) {
 		this.courseId = courseId;
 	}
 

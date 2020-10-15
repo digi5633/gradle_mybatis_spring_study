@@ -12,6 +12,10 @@ public class Student {
 	private Address address;
 	private Gender gender;
 
+	public Student() {
+		super();
+	}
+
 	public Gender getGender() {
 		return gender;
 	}
