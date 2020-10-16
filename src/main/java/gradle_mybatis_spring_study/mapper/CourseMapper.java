@@ -24,8 +24,13 @@ public interface CourseMapper {
 
 	// foreach 루프 - insert
 	int insertCourses(Map<String, Object> map);
-	
+
 	// foreach 루프 - delete
 	int deleteCourses(Map<String, Object> map);
+
+	// Transaction
+	int insertCourse(Course course);
+
+	int deleteCourse(int CourseId);
 
 }

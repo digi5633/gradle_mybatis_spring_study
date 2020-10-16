@@ -7,6 +7,7 @@ public class Tutor {
 	private int tutorId;
 	private String name;
 	private String email;
+	private PhoneNumber phone;
 	private Address address;
 	private List<Course> courses;
 
@@ -14,16 +15,23 @@ public class Tutor {
 		super();
 	}
 
-	public Tutor(int tutorId, String name, String email, Address address, List<Course> courses) {
+	public Tutor(int tutorId, String name, String email, PhoneNumber phone, Address address) {
+		super();
 		this.tutorId = tutorId;
 		this.name = name;
 		this.email = email;
+		this.phone = phone;
 		this.address = address;
-		this.courses = courses;
 	}
 
-	public Tutor(int tutorId) {
+	public Tutor(int tutorId, String name, String email, PhoneNumber phone, Address address, List<Course> courses) {
+		super();
 		this.tutorId = tutorId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.courses = courses;
 	}
 
 	public int getTutorId() {
@@ -50,6 +58,14 @@ public class Tutor {
 		this.email = email;
 	}
 
+	public PhoneNumber getPhone() {
+		return phone;
+	}
+
+	public void setPhone(PhoneNumber phone) {
+		this.phone = phone;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
@@ -68,7 +84,7 @@ public class Tutor {
 
 	@Override
 	public String toString() {
-		return String.format("Tutor [%s, %s, %s, %s, %s]", tutorId, name, email, address, courses);
+		return String.format("Tutor [%s, %s, %s, %s, %s, %s]", tutorId, name, email, phone, address, courses);
 	}
 
 }

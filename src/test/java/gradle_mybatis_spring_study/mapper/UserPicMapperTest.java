@@ -40,6 +40,7 @@ public class UserPicMapperTest {
 	@Test
 	public void test01InsertUserPic() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
 		UserPic userPic = new UserPic();
 		userPic.setName("TENET");
 		userPic.setBio("put some lengthy bio here");
@@ -65,6 +66,7 @@ public class UserPicMapperTest {
 	@Test
 	public void test02GetUserPic() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
 		UserPic userPic = mapper.getUserPic(1);
 		if (userPic.getPic() != null) {
 			File file = getPicFile(userPic);
@@ -90,6 +92,7 @@ public class UserPicMapperTest {
 	@Test
 	public void test03DeleteUserPic() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
 		int res = mapper.deleteUserPic(1);
 		Assert.assertEquals(1, res);
 	}

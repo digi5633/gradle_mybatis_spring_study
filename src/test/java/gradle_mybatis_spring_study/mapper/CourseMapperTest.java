@@ -170,7 +170,7 @@ public class CourseMapperTest {
 		tutors.add(new Course(4, "mysql", "database", new Date(), new Date(), 3));
 		tutors.add(new Course(5, "mssql", "database", new Date(), new Date(), 3));
 		tutors.add(new Course(6, "mariaDb", "database", new Date(), new Date(), 4));
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("tutors", tutors);
 		int res = mapper.insertCourses(map);
@@ -180,13 +180,28 @@ public class CourseMapperTest {
 	@Test
 	public void test09DeleteCourses() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
+
 		List<Integer> courseIds = Arrays.asList(4, 5, 6);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("courseIds", courseIds);
 		int res = mapper.deleteCourses(map);
 		Assert.assertEquals(3, res);
+	}
+
+	@Test
+	public void test10insertCourseAndDeleteCourse() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		Course course = new Course(7, "oracle", "database", new Date(), new Date(), 4);
+		int res = mapper.insertCourse(course);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tutorId", 4);
+		List<Course> list = mapper.selectCoursesByCondition(map);
+		list.stream().forEach(System.out::println);
+		res += mapper.deleteCourse(course.getCourseId());
+		Assert.assertEquals(2, res);
 	}
 
 }

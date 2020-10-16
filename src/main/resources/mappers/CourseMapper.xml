@@ -90,22 +90,34 @@
 	<!-- foreach 루프 - insert -->
 	<insert id="insertCourses" parameterType="map">
 		INSERT ALL
-		<foreach item="item" collection="tutors" separator="" index="index">
+		<foreach item="item" collection="tutors" index="index">
 			INTO COURSES VALUES
 			(#{item.courseId}, #{item.name}, #{item.description}, #{item.startDate}, #{item.endDate}, #{item.tutorId})
 		</foreach>
 		SELECT 1 FROM DUAL
 	</insert>
 	
-	<!-- delete -->
+	<!-- foreach 루프 - delete -->
 	<delete id="deleteCourses" parameterType="map">
 		DELETE FROM COURSES
 		<where>
 			COURSE_ID IN
-			<foreach item="item" collection="courseIds" separator="" index="index">
-				#{item.courseId}
+			<foreach item="courseId" collection="courseIds" index="index" open="(" close=")" separator=",">
+				#{courseId}
 			</foreach>
 		</where>
+	</delete>
+	
+	<!-- transaction -->
+	<insert id="insertCourse" parameterType="Course">
+		INSERT INTO COURSES(COURSE_ID, NAME, DESCRIPTION, START_DATE, END_DATE, TUTOR_ID)
+		VALUES (#{courseId}, #{name}, #{description}, #{startDate}, #{endDate}, #{tutorId})
+	</insert>
+	
+	<delete id="deleteCourse">
+		DELETE
+		  FROM COURSES
+		 WHERE COURSE_ID = #{courseId}
 	</delete>
 
 </mapper>
